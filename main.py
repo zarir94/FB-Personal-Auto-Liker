@@ -49,12 +49,11 @@ def YoLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
 
-    print("Downloading Webdriver")
-    service = Service(ChromeDriverManager().install())
-    print("Done Downloading")
+    #print("Downloading Webdriver")
+    #service = Service(ChromeDriverManager().install())
+    #print("Done Downloading")
 
-    driver = webdriver.Chrome(
-        service=service, chrome_options=options, service_log_path="NUL")
+    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL")
     driver.set_window_size(400, 700)
     driver.request_interceptor = interceptor
 
@@ -131,12 +130,11 @@ def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
 
-    print("Downloading Webdriver")
-    service = Service(ChromeDriverManager().install())
-    print("Done Downloading")
+    #print("Downloading Webdriver")
+    #service = Service(ChromeDriverManager().install())
+    #print("Done Downloading")
 
-    driver = webdriver.Chrome(
-        service=service, chrome_options=options, service_log_path="NUL")
+    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL")
     driver.set_window_size(400, 700)
     driver.request_interceptor = interceptor
 
