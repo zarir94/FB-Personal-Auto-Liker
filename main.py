@@ -10,7 +10,7 @@ from urllib.parse import parse_qs
 from time import sleep
 
 
-def get_msg_from_url(url: str) -> str | bool:
+def get_msg_from_url(url: str) -> str:
     parsed_url = urlparse(url)
     try:
         return parse_qs(parsed_url.query)['i'][0]
