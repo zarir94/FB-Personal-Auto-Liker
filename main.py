@@ -185,3 +185,36 @@ def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     driver.close()
     return {'react': sent_react, 'react_type': react}
 
+
+
+if __name__ == '__main__':
+    # FILE.PY REACT POST_ID COOKIE
+    # main.py LOVE 1937183719392 fb_cookie
+    import sys
+    react = sys.argv[1]
+    post_id = sys.argv[2]
+    cookie = sys.argv[3]
+    while True:
+        while True:
+            try:
+                DJ=DJLiker_Bot(react, post_id, cookie)
+                break
+            except Exception as e1:
+                if 'Could not solve Captcha' in e1:
+                    continue
+                else:
+                    print(f'Error at DJ Liker: \n{str(e1)}\nSkipping This Time...')
+                    break
+        while True:
+            try:
+                YO=YoLiker_Bot(react, post_id, cookie)
+                break
+            except Exception as e1:
+                if 'Could not solve Captcha' in e1:
+                    continue
+                else:
+                    print(f'Error at YO Liker: \n{str(e1)}\nSkipping This Time...')
+                    break
+
+        sleep(60 * 35) # Sleep 35 Min...
+
