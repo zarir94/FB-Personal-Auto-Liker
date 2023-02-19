@@ -22,6 +22,7 @@ def get_msg_from_url(url: str) -> str | bool:
 def interceptor(request):
     if 'pagead2.googlesyndication.com' in request.url:
         request.abort()
+    request.headers['X-Requested-With'] = 'com.instagram.android'
 
 
 def get_int(text: str) -> int:
