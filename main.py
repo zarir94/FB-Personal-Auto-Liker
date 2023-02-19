@@ -198,6 +198,9 @@ if __name__ == '__main__':
         while True:
             try:
                 DJ=DJLiker_Bot(react, post_id, cookie)
+                DJ_react=DJ['react']
+                DJ_react_type=DJ['react_type']
+                print(f'{DJ_react} {DJ_react_type} Reacts Sent')
                 break
             except Exception as e1:
                 if 'Could not solve Captcha' in e1:
@@ -208,6 +211,9 @@ if __name__ == '__main__':
         while True:
             try:
                 YO=YoLiker_Bot(react, post_id, cookie)
+                YO_react=YO['react']
+                YO_react_type=YO['react_type']
+                print(f'{YO_react} {YO_react_type} Reacts Sent')
                 break
             except Exception as e1:
                 if 'Could not solve Captcha' in e1:
