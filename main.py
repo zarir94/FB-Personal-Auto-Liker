@@ -57,10 +57,12 @@ def YoLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     driver.request_interceptor = interceptor
 
     driver.get(url)
+    print("Openning URL")
 
     if not 'Login Successful' in get_msg_from_url(driver.current_url):
         driver.close()
         raise Exception('Could Not Login, Please check your Cookie')
+    print("Login Successful")
 
     driver.get('http://app.pagalworld2.com/dashboard.php?type=custom')
 
@@ -77,12 +79,14 @@ def YoLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
         seconds = time[0].split(':')[1]
         driver.close()
         raise Exception(f'Remaining Time {minutes} minutes {seconds} seconds.')
+    print("Solving Captcha")
     try:
         solver = Recaptcha_Solver(driver, 'ffmpeg.exe')
         solver.solve_recaptcha()
     except Exception as e:
         driver.close()
         raise Exception(f'Could not solve Captcha! Error: {e}')
+    print("Filling up form")
 
     input_form = find_until_located(
         driver, By.CSS_SELECTOR, 'input[type=text]')
@@ -133,10 +137,12 @@ def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     driver.request_interceptor = interceptor
 
     driver.get(url)
+    print("Openning URL")
 
     if not 'Welcome' in get_msg_from_url(driver.current_url):
         driver.close()
         raise Exception('Could Not Login, Please check your Cookie')
+    print("Login Successful")
 
     driver.get('http://app.fbliker.net/autolike.php?type=custom')
 
@@ -153,12 +159,14 @@ def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
         seconds = time[0].split(':')[1]
         driver.close()
         raise Exception(f'Remaining Time {minutes} minutes {seconds} seconds.')
+    print("Solving Captcha")
     try:
         solver = Recaptcha_Solver(driver, 'ffmpeg.exe')
         solver.solve_recaptcha()
     except Exception as e:
         driver.close()
         raise Exception(f'Could not solve Captcha! Error: {e}')
+    print("Filling up form")
 
     input_form = find_until_located(
         driver, By.CSS_SELECTOR, 'input[type=text]')
@@ -194,7 +202,9 @@ if __name__ == '__main__':
     react = sys.argv[1]
     post_id = sys.argv[2]
     cookie = sys.argv[3]
+    print("Got Everything")
     while True:
+        print("Trying DJ")
         while True:
             try:
                 DJ=DJLiker_Bot(react, post_id, cookie)
@@ -209,6 +219,7 @@ if __name__ == '__main__':
                 else:
                     print(f'Error at DJ Liker: \n{str(e1)}\nSkipping This Time...')
                     break
+        print("Trying YO")
         while True:
             try:
                 YO=YoLiker_Bot(react, post_id, cookie)
