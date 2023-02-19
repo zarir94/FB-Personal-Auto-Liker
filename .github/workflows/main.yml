@@ -1,0 +1,36 @@
+name: Auto Liker
+
+on:
+  workflow_dispatch:
+    inputs:
+      react:
+        description: 'Select any React'
+        required: true
+        default: 'LIKE'
+        options: ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
+      post_id:
+        description: 'Enter a Post ID'
+        required: true
+      cookie:
+        description: 'Enter a Cookie value'
+        required: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+      
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run main.py
+      run: python main.py ${{ github.event.inputs.react }} ${{ github.event.inputs.post_id }} ${{ github.event.inputs.cookie }}
+      shell: cmd
