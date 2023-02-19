@@ -206,6 +206,7 @@ if __name__ == '__main__':
     post_id = sys.argv[2]
     cookie = sys.argv[3]
     print("Got Everything")
+    print(f"React: {react}\nID: {post_id}\nCookie: {cookie}")
     while True:
         print("Trying DJ")
         while True:
