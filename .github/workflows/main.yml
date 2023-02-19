@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       react:
+        type: choice
         description: 'Select any React'
         required: true
         default: 'LIKE'
