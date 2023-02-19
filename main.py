@@ -203,7 +203,7 @@ if __name__ == '__main__':
                 print(f'{DJ_react} {DJ_react_type} Reacts Sent')
                 break
             except Exception as e1:
-                if 'Could not solve Captcha' in e1:
+                if 'Could not solve Captcha' in str(e1):
                     continue
                 else:
                     print(f'Error at DJ Liker: \n{str(e1)}\nSkipping This Time...')
@@ -216,11 +216,10 @@ if __name__ == '__main__':
                 print(f'{YO_react} {YO_react_type} Reacts Sent')
                 break
             except Exception as e1:
-                if 'Could not solve Captcha' in e1:
+                if 'Could not solve Captcha' in str(e1):
                     continue
                 else:
                     print(f'Error at YO Liker: \n{str(e1)}\nSkipping This Time...')
                     break
 
         sleep(60 * 35) # Sleep 35 Min...
-
