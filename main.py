@@ -218,7 +218,7 @@ if __name__ == '__main__':
                 break
             except Exception as e1:
                 if 'Could not solve Captcha' in str(e1):
-                    print('Could not solve captcha at DJ Liker... Retrying...')
+                    print(f'Could not solve captcha at DJ Liker...\nError: {str(e1)} Retrying...')
                     continue
                 else:
                     print(f'Error at DJ Liker: \n{str(e1)}\nSkipping This Time...')
@@ -233,7 +233,7 @@ if __name__ == '__main__':
                 break
             except Exception as e1:
                 if 'Could not solve Captcha' in str(e1):
-                    print('Could not solve captcha at YO Liker... Retrying...')
+                    print(f'Could not solve captcha at YO Liker...\nError: {str(e1)} Retrying...')
                     continue
                 else:
                     print(f'Error at YO Liker: \n{str(e1)}\nSkipping This Time...')
