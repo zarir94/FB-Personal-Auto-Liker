@@ -3,3 +3,4 @@ selenium==4.7.2
 selenium-recaptcha==0.0.4
 selenium-wire==5.1.0
 webdriver-manager==3.8.5
+free-proxy==1.1.1
