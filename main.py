@@ -146,6 +146,8 @@ def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
 
     driver.get(url)
     print("Openning URL")
+    if 'Just a moment' in driver.title:
+        sleep(60)
 
     if not 'Welcome' in get_msg_from_url(driver.current_url):
         driver.close()
