@@ -7,7 +7,12 @@ from urllib.parse import quote_plus
 from seleniumwire import webdriver
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
+from fp.fp import FreeProxy
 from time import sleep
+
+
+def get_sw_options_proxy():
+    return {'proxy': {'http': FreeProxy(rand=True).get()}}
 
 
 def get_msg_from_url(url: str) -> str:
@@ -54,7 +59,7 @@ def YoLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     #service = Service(ChromeDriverManager().install())
     #print("Done Downloading")
 
-    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL")
+    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL", seleniumwire_options=get_sw_options_proxy())
     driver.set_window_size(400, 700)
     driver.request_interceptor = interceptor
 
@@ -135,7 +140,7 @@ def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     #service = Service(ChromeDriverManager().install())
     #print("Done Downloading")
 
-    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL")
+    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL", seleniumwire_options=get_sw_options_proxy())
     driver.set_window_size(400, 700)
     driver.request_interceptor = interceptor
 
