@@ -140,14 +140,14 @@ def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     #service = Service(ChromeDriverManager().install())
     #print("Done Downloading")
 
-    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL", seleniumwire_options=get_sw_options_proxy())
+    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL")
     driver.set_window_size(400, 700)
     driver.request_interceptor = interceptor
 
     driver.get(url)
     print("Openning URL")
-    if 'Just a moment' in driver.title:
-        sleep(60)
+    # if 'Just a moment' in driver.title:
+    #     sleep(60)
 
     if not 'Welcome' in get_msg_from_url(driver.current_url):
         driver.close()
