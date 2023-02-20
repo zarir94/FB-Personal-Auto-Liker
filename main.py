@@ -211,7 +211,8 @@ if __name__ == '__main__':
     import sys
     react = sys.argv[1]
     post_id = sys.argv[2]
-    cookie = sys.argv[3]
+    #cookie = sys.argv[3]
+    cookie="datr=8PfxYzYukILMcOhYoeNTpUeM; sb=8PfxY0EsCpwkNtRNRajSYl9S; m_pixel_ratio=1.7937500476837158; fr=0GQ1fFFNXP4fipFve.AWWB_PCvQcfRk6QHOtLTpGro-kg.Bj8ffw.bF.AAA.0.0.Bj8fgJ.AWXisZCNfNY; c_user=100011600028344; xs=27%3AzuPxW4N1W5yfPA%3A2%3A1676802057%3A-1%3A5248; m_page_voice=100011600028344; wd=403x775; locale=en_US; fbl_st=101524286%3BT%3A27946701; fbl_cs=AhDyWgbXqP2H3JTvIcYd7NPMGDlGTkowNC9IRUw2Yk1pR3FEMHlCMTIrUg; fbl_ci=472090654998086; vpd=v1%3B775x402x1.7937500476837158"
     print("Got Everything")
     print(f"React: {react}\nID: {post_id}\nCookie: {cookie}")
     while True:
@@ -248,5 +249,5 @@ if __name__ == '__main__':
                     print(f'Error at YO Liker: \n{str(e1)}\nSkipping This Time...')
                     break
 
-        sleep(60 * 35) # Sleep 35 Min...
+        sleep(60 * 35)
 
