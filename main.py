@@ -215,6 +215,7 @@ if __name__ == '__main__':
     print("Got Everything")
     print(f"React: {react}\nID: {post_id}\nCookie: {cookie}")
     while True:
+        yo_error=0
         print("Trying DJ")
         while True:
             try:
@@ -239,8 +240,9 @@ if __name__ == '__main__':
                 print(f'{YO_react} {YO_react_type} Reacts Sent')
                 break
             except Exception as e1:
-                if 'Could not solve Captcha' in str(e1):
+                if 'Could not solve Captcha' in str(e1) and yo_error > 9:
                     print(f'Could not solve captcha at YO Liker...\nError: {str(e1)} Retrying...')
+                    yo_error+=1
                     continue
                 else:
                     print(f'Error at YO Liker: \n{str(e1)}\nSkipping This Time...')
