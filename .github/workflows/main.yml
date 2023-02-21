@@ -31,5 +31,5 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run main.py
-      run: python main.py ${{ github.event.inputs.proxy }} ${{ github.event.inputs.react }} ${{ github.event.inputs.post_id }} "datr=8PfxYzYukILMcOhYoeNTpUeM; sb=8PfxY0EsCpwkNtRNRajSYl9S; m_pixel_ratio=1.7937500476837158; fr=0GQ1fFFNXP4fipFve.AWWB_PCvQcfRk6QHOtLTpGro-kg.Bj8ffw.bF.AAA.0.0.Bj8fgJ.AWXisZCNfNY; c_user=100011600028344; xs=27%3AzuPxW4N1W5yfPA%3A2%3A1676802057%3A-1%3A5248; m_page_voice=100011600028344; wd=403x775; locale=en_US; fbl_st=101524286%3BT%3A27946701; fbl_cs=AhDyWgbXqP2H3JTvIcYd7NPMGDlGTkowNC9IRUw2Yk1pR3FEMHlCMTIrUg; fbl_ci=472090654998086; vpd=v1%3B775x402x1.7937500476837158"
+      run: python main.py ${{ github.event.inputs.proxy }} ${{ github.event.inputs.react }} ${{ github.event.inputs.post_id }} "${{ secrets.COOKIE_1 }}" "${{ secrets.COOKIE_2 }}"
       shell: cmd
