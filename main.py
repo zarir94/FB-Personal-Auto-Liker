@@ -8,6 +8,7 @@ from seleniumwire import webdriver
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
 from time import sleep
+from base64 import b64decode
 
 
 def get_msg_from_url(url: str) -> str:
@@ -211,6 +212,7 @@ if __name__ == '__main__':
     print("Got Everything", flush=True)
     while True:
         for cookie in cookies:
+            cookie=b64decode(cookie).decode()
             print(f"React: {react}\nID: {post_id}\nCookie: {cookie}", flush=True)
             yo_error=0
             dj_error=0
