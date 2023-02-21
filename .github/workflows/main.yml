@@ -15,9 +15,6 @@ on:
       post_id:
         description: 'Enter a Post ID'
         required: true
-      cookie:
-        description: 'Enter a Cookie value'
-        required: true
 
 jobs:
   build:
