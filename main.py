@@ -7,12 +7,7 @@ from urllib.parse import quote_plus
 from seleniumwire import webdriver
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
-from fp.fp import FreeProxy
 from time import sleep
-
-
-def get_sw_options_proxy():
-    return {'proxy': {'http': FreeProxy(rand=True).get()}}
 
 
 def get_msg_from_url(url: str) -> str:
@@ -40,7 +35,7 @@ def get_int(text: str) -> int:
     return int(number)
 
 
-def YoLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
+def YoLiker_Bot(proxy:str, react: str, post_id: str, cookie: str, headless=True):
     url = f"http://app.pagalworld2.com/login.php?access_token=&cookie={quote_plus(cookie)}"
     all_reacts = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
     if not react in all_reacts:
@@ -59,7 +54,7 @@ def YoLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     #service = Service(ChromeDriverManager().install())
     #print("Done Downloading", flush=True)
 
-    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL", seleniumwire_options=get_sw_options_proxy())
+    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL", seleniumwire_options = {'proxy': {'http': proxy}})
     driver.set_window_size(400, 700)
     driver.request_interceptor = interceptor
 
@@ -121,7 +116,7 @@ def YoLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     return {'react': sent_react, 'react_type': react}
 
 
-def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
+def DJLiker_Bot(proxy:str, react: str, post_id: str, cookie: str, headless=True):
     url = f"http://app.fbliker.net/login.php?access_token=&cookie={quote_plus(cookie)}"
     all_reacts = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
     if not react in all_reacts:
@@ -140,7 +135,7 @@ def DJLiker_Bot(react: str, post_id: str, cookie: str, headless=True):
     #service = Service(ChromeDriverManager().install())
     #print("Done Downloading", flush=True)
 
-    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL")
+    driver = webdriver.Chrome(chrome_options=options, service_log_path="NUL", seleniumwire_options = {'proxy': {'http': proxy}})
     driver.set_window_size(400, 700)
     driver.request_interceptor = interceptor
 
@@ -209,9 +204,10 @@ if __name__ == '__main__':
     # FILE.PY REACT POST_ID COOKIE
     # main.py LOVE 1937183719392 fb_cookie
     import sys
-    react = sys.argv[1]
-    post_id = sys.argv[2]
-    cookies = sys.argv[3:]
+    proxy = sys.argv[1]
+    react = sys.argv[2]
+    post_id = sys.argv[3]
+    cookies = sys.argv[4:]
     print("Got Everything", flush=True)
     while True:
         for cookie in cookies:
@@ -221,7 +217,7 @@ if __name__ == '__main__':
             print("Trying DJ", flush=True)
             while True:
                 try:
-                    DJ=DJLiker_Bot(react, post_id, cookie)
+                    DJ=DJLiker_Bot(proxy, react, post_id, cookie)
                     DJ_react=DJ['react']
                     DJ_react_type=DJ['react_type']
                     print(f'{DJ_react} {DJ_react_type} Reacts Sent', flush=True)
@@ -237,7 +233,7 @@ if __name__ == '__main__':
             print("Trying YO", flush=True)
             while True:
                 try:
-                    YO=YoLiker_Bot(react, post_id, cookie)
+                    YO=YoLiker_Bot(proxy, react, post_id, cookie)
                     YO_react=YO['react']
                     YO_react_type=YO['react_type']
                     print(f'{YO_react} {YO_react_type} Reacts Sent', flush=True)
