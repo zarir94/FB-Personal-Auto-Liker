@@ -211,43 +211,43 @@ if __name__ == '__main__':
     import sys
     react = sys.argv[1]
     post_id = sys.argv[2]
-    #cookie = sys.argv[3]
-    cookie="datr=8PfxYzYukILMcOhYoeNTpUeM; sb=8PfxY0EsCpwkNtRNRajSYl9S; m_pixel_ratio=1.7937500476837158; fr=0GQ1fFFNXP4fipFve.AWWB_PCvQcfRk6QHOtLTpGro-kg.Bj8ffw.bF.AAA.0.0.Bj8fgJ.AWXisZCNfNY; c_user=100011600028344; xs=27%3AzuPxW4N1W5yfPA%3A2%3A1676802057%3A-1%3A5248; m_page_voice=100011600028344; wd=403x775; locale=en_US; fbl_st=101524286%3BT%3A27946701; fbl_cs=AhDyWgbXqP2H3JTvIcYd7NPMGDlGTkowNC9IRUw2Yk1pR3FEMHlCMTIrUg; fbl_ci=472090654998086; vpd=v1%3B775x402x1.7937500476837158"
+    cookies = sys.argv[3:]
     print("Got Everything", flush=True)
-    print(f"React: {react}\nID: {post_id}\nCookie: {cookie}", flush=True)
     while True:
-        yo_error=0
-        print("Trying DJ", flush=True)
-        while True:
-            try:
-                DJ=DJLiker_Bot(react, post_id, cookie)
-                DJ_react=DJ['react']
-                DJ_react_type=DJ['react_type']
-                print(f'{DJ_react} {DJ_react_type} Reacts Sent', flush=True)
-                break
-            except Exception as e1:
-                if 'Could not solve Captcha' in str(e1):
-                    print(f'Could not solve captcha at DJ Liker...\nError: {str(e1)} Retrying...', flush=True)
-                    continue
-                else:
-                    print(f'Error at DJ Liker: \n{str(e1)}\nSkipping This Time...', flush=True)
+        for cookie in cookies:
+            print(f"React: {react}\nID: {post_id}\nCookie: {cookie}", flush=True)
+            yo_error=0
+            dj_error=0
+            print("Trying DJ", flush=True)
+            while True:
+                try:
+                    DJ=DJLiker_Bot(react, post_id, cookie)
+                    DJ_react=DJ['react']
+                    DJ_react_type=DJ['react_type']
+                    print(f'{DJ_react} {DJ_react_type} Reacts Sent', flush=True)
                     break
-        print("Trying YO", flush=True)
-        while True:
-            try:
-                YO=YoLiker_Bot(react, post_id, cookie)
-                YO_react=YO['react']
-                YO_react_type=YO['react_type']
-                print(f'{YO_react} {YO_react_type} Reacts Sent', flush=True)
-                break
-            except Exception as e1:
-                if 'Could not solve Captcha' in str(e1) and yo_error > 9:
-                    print(f'Could not solve captcha at YO Liker...\nError: {str(e1)} Retrying...', flush=True)
-                    yo_error+=1
-                    continue
-                else:
-                    print(f'Error at YO Liker: \n{str(e1)}\nSkipping This Time...', flush=True)
+                except Exception as e1:
+                    if 'Could not solve Captcha' in str(e1) and dj_error < 9:
+                        print(f'Could not solve captcha at DJ Liker...\nError: {str(e1)} Retrying...', flush=True)
+                        dj_error+=1
+                        continue
+                    else:
+                        print(f'Error at DJ Liker: \n{str(e1)}\nSkipping This Time...', flush=True)
+                        break
+            print("Trying YO", flush=True)
+            while True:
+                try:
+                    YO=YoLiker_Bot(react, post_id, cookie)
+                    YO_react=YO['react']
+                    YO_react_type=YO['react_type']
+                    print(f'{YO_react} {YO_react_type} Reacts Sent', flush=True)
                     break
-
+                except Exception as e1:
+                    if 'Could not solve Captcha' in str(e1) and yo_error < 9:
+                        print(f'Could not solve captcha at YO Liker...\nError: {str(e1)} Retrying...', flush=True)
+                        yo_error+=1
+                        continue
+                    else:
+                        print(f'Error at YO Liker: \n{str(e1)}\nSkipping This Time...', flush=True)
+                        break
         sleep(60 * 35)
-
