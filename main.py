@@ -204,7 +204,7 @@ if __name__ == '__main__':
     # FILE.PY REACT POST_ID COOKIE
     # main.py LOVE 1937183719392 fb_cookie
     import sys
-    proxy = sys.argv[1]
+    proxy = 'http://' + sys.argv[1]
     react = sys.argv[2]
     post_id = sys.argv[3]
     cookies = sys.argv[4:]
