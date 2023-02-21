@@ -28,5 +28,5 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run main.py
-      run: python main.py ${{ github.event.inputs.proxy }} ${{ github.event.inputs.react }} ${{ github.event.inputs.post_id }} "${{ secrets.COOKIE_1 }}" "${{ secrets.COOKIE_2 }}"
+      run: python main.py ${{ github.event.inputs.proxy }} ${{ github.event.inputs.react }} ${{ github.event.inputs.post_id }} "${{ secrets.B64_COOKIE_1 }}" "${{ secrets.B64_COOKIE_2 }}"
       shell: cmd
