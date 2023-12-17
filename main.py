@@ -82,9 +82,9 @@ def djliker(cookie:str, post_id:str, react:str):
 
 
 if __name__ == '__main__':
-    post_id = int(sys.argv[1])
+    post_id = sys.argv[1]
     amount = int(sys.argv[2])
-    react = int(sys.argv[3])
+    react = sys.argv[3]
     r = get('https://pastebin.com/raw/zNsX8viB')
     data = r.json()
     total_sent = 0
