@@ -8,6 +8,11 @@ import os, sys, traceback
 settings.HIDE_DRIVER_DOWNLOADS = True
 ext_path = os.path.join(os.path.dirname(__file__), 'header_modifier')
 available_react = ['LIKE', 'LOVE', 'CARE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
+d=print
+
+def print(*a, **kw):
+    kw['flush'] = True
+    d(*a, **kw)
 
 def get_only_int(text:str) -> int:
     n = '0'

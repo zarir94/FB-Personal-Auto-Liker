@@ -3,17 +3,17 @@ name: Auto Liker
 on:
   workflow_dispatch:
     inputs:
-      proxy:
-        description: 'Enter HTTP proxy:port'
-        required: true
       react:
         type: choice
         description: 'Select any React'
         required: true
         default: 'LIKE'
-        options: ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
+        options: ['LIKE', 'LOVE', 'CARE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
       post_id:
         description: 'Enter a Post ID'
+        required: true
+      amount:
+        description: 'Enter react amount'
         required: true
 
 jobs:
@@ -28,5 +28,5 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run main.py
-      run: python main.py ${{ github.event.inputs.proxy }} ${{ github.event.inputs.react }} ${{ github.event.inputs.post_id }} "${{ secrets.B64_COOKIE_1 }}" "${{ secrets.B64_COOKIE_2 }}"
+      run: python main.py "${{ github.event.inputs.post_id }}" "${{ github.event.inputs.amount }}" "${{ github.event.inputs.react }}"
       shell: cmd
