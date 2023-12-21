@@ -1,3 +1,6 @@
-seleniumbase
-selenium-recaptcha
+DrissionPage
+ffmpeg-downloader
 requests
+openai-whisper
+fake-useragent
+psutil
