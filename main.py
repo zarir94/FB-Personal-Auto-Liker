@@ -19,7 +19,7 @@ if __name__ == '__main__':
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
             except:
-                print('\n'.join(traceback.format_exc().splitlines()[-3:]))
+                print(traceback.format_exc())
             print('\n[+] Trying %s in DJ Liker' % name)
             try:
                 ins_dj = djliker(cookie, post_id, react)
@@ -27,6 +27,5 @@ if __name__ == '__main__':
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
             except:
-                print('\n'.join(traceback.format_exc().splitlines()[-3:]))
+                print(traceback.format_exc())
             print('\n' * 3)
-
