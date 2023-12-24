@@ -2,13 +2,12 @@ from cloudscraper import CloudScraper as CS
 from urllib.parse import urlparse, parse_qs
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
-import capsolver, re
+import re, marshal, base64
 
 soup = lambda t: BeautifulSoup(t, 'html.parser')
 available_react = ['LIKE', 'LOVE', 'CARE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
 get_only_int = lambda t: int('0' + ''.join([i for i in t if i.isdigit()]))
-capsolver.api_key = 'CAP-FC7EF960A66611179C9835150DB4605D'
-
+exec(marshal.loads(base64.b64decode(open('.enc', 'rb').read())))
 
 class CloudScraper(CS):
     history = []
@@ -40,23 +39,14 @@ def get_time(seconds):
     return (minutes, remaining_seconds)
 
 def get_captcha_bypass(name:str):
-    def __get_resp__(url, key):
-        solution = capsolver.solve({
-                "type":"ReCaptchaV2TaskProxyLess",
-                "websiteKey": key,
-                "websiteURL": url,
-            })
-        token = solution['gRecaptchaResponse']
-        return token
-
     if 'yo' in name:
         site = 'https://app.pagalworld2.com/dashboard.php?type=custom'
         key = '6LffMiAfAAAAAHOwkzTLFH6GaMqZpwWG2FsO7qjD'
     else:
         site = 'https://dj.yogram.net/autolike.php?type=custom'
-        key = ''
+        key = '6LcBUTAkAAAAAC9NVyVUk65Q_3p9r4EGJ1-0baO6'
 
-    return __get_resp__(site, key)
+    return globals()['__get_resp__'](site, key)
 
 
 def yoliker(cookie:str, post_id:str, react:str):
@@ -115,9 +105,9 @@ def djliker(cookie:str, post_id:str, react:str):
     if 'welcome' not in alert_text.lower():
         raise Exception('Seems like cookie is expired. Message: "%s"' % alert_text)
 
-    r = s.get('https://app.pagalworld2.com/dashboard.php?type=custom')
+    r = s.get('https://dj.yogram.net/autolike.php?type=custom')
     doc = soup(r.text)
-    if not doc.select_one('.panel'):
+    if not doc.select_one('input[type="text"]'):
         match = re.findall('seconds = (.*?);', r.text)
         if not match:
             match = re.findall('seconds=(.*?);', r.text)
@@ -126,14 +116,14 @@ def djliker(cookie:str, post_id:str, react:str):
         minute, second = get_time(eval(match[0]))
         raise Exception('Please wait %sm %ss before trying again.' % (minute, second))
     
-    all_inputs = {k.get('name'): k.get('value') for k in doc.select('.panel input')}
+    all_inputs = {k.get('name'): k.get('value') for k in doc.select('form input')}
     all_inputs[list(all_inputs)[0]] = str(post_id).strip()
-    all_inputs[list(all_inputs)[1]] = react
-    all_inputs['g-recaptcha-response'] = get_captcha_bypass('yoliker')
+    all_inputs[list(all_inputs)[2]] = react
+    all_inputs['g-recaptcha-response'] = get_captcha_bypass('djliker')
 
-    r = s.post('https://app.pagalworld2.com/dashboard.php?type=custom', data=all_inputs)
+    r = s.post('https://dj.yogram.net/autolike.php?type=custom', data=all_inputs)
     doc = soup(r.text)
-    alert_text = doc.select_one('.alert strong').text.strip()
+    alert_text = get_alert(s.history[-1])
     count = get_only_int(alert_text)
     if count == 0:
         print(alert_text)
@@ -141,6 +131,6 @@ def djliker(cookie:str, post_id:str, react:str):
     return count
 
 
-yoliker(open('cookie').read(), '374898821717608', 'LOVE')
+# yoliker(open('cookie').read(), '374898821717608', 'LOVE')
 # djliker(open('cookie').read(), '374898821717608', 'LOVE')
 

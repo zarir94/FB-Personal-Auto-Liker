@@ -1,6 +1,3 @@
-DrissionPage
-ffmpeg-downloader
-requests
-openai-whisper
-fake-useragent
-psutil
+cloudscraper
+capsolver
+bs4
