@@ -2,6 +2,11 @@ import traceback, sys
 from requests import get
 from modules import djliker, yoliker
 
+d = print
+def print(*a,**b):
+    b['flush'] = True
+    d(*a, **b)
+
 if __name__ == '__main__':
     post_id = sys.argv[1]
     amount = int(sys.argv[2])

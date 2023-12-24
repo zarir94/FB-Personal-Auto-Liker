@@ -22,6 +22,11 @@ class CloudScraper(CS):
             return self.request('GET', urljoin(url, r.headers.get('Location')), *a, **b)
         return r
 
+d = print
+def print(*a,**b):
+    b['flush'] = True
+    d(*a, **b)
+
 def get_alert(url):
     data = parse_qs(urlparse(url).query)
     if 'i' in list(data):
