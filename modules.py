@@ -77,9 +77,12 @@ def yoliker(cookie:str, post_id:str, react:str):
             match = re.findall('seconds=(.*?);', r.text)
         if not match:
             match = ['0']
-        minute, second = get_time(eval(match[0]))
-        raise Exception('Please wait %sm %ss before trying again.' % (minute, second))
-    
+        ts = eval(match[0])
+        minute, second = get_time(ts)
+        r = Exception('Please wait %sm %ss before trying again.' % (minute, second))
+        r.sec = ts
+        raise r
+
     all_inputs = {k.get('name'): k.get('value') for k in doc.select('.panel input')}
     all_inputs[list(all_inputs)[0]] = str(post_id).strip()
     all_inputs[list(all_inputs)[1]] = react
@@ -118,9 +121,12 @@ def djliker(cookie:str, post_id:str, react:str):
             match = re.findall('seconds=(.*?);', r.text)
         if not match:
             match = ['0']
-        minute, second = get_time(eval(match[0]))
-        raise Exception('Please wait %sm %ss before trying again.' % (minute, second))
-    
+        ts = eval(match[0])
+        minute, second = get_time(ts)
+        r = Exception('Please wait %sm %ss before trying again.' % (minute, second))
+        r.sec = ts
+        raise r
+
     all_inputs = {k.get('name'): k.get('value') for k in doc.select('form input')}
     all_inputs[list(all_inputs)[0]] = str(post_id).strip()
     all_inputs[list(all_inputs)[2]] = react

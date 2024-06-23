@@ -15,6 +15,7 @@ if __name__ == '__main__':
     data = r.json()
     total_sent = 0
     while total_sent < amount:
+        to_sleep = 1
         for name, cookie in data.items():
             print('=' * 60)
             print('[+] Trying %s in Yo Liker' % name)
@@ -23,7 +24,8 @@ if __name__ == '__main__':
                 total_sent += ins_yo
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
-            except:
+            except Exception as err:
+                if 'wait' in str(err) and err.sec > to_sleep: to_sleep = err.sec
                 print('\n'.join(traceback.format_exc().splitlines()[-3:]))
             print('\n[+] Trying %s in DJ Liker' % name)
             try:
@@ -31,7 +33,11 @@ if __name__ == '__main__':
                 total_sent += ins_dj
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
-            except:
+            except Exception as err:
+                if 'wait' in str(err) and err.sec > to_sleep: to_sleep = err.sec
                 print('\n'.join(traceback.format_exc().splitlines()[-3:]))
             print('\n' * 3)
+        
+        print('Sleeping', to_sleep, 'Seconds...')
+        sleep(to_sleep + 30)
 
