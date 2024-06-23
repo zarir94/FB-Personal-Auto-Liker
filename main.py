@@ -1,6 +1,7 @@
 import traceback, sys
 from requests import get
 from modules import djliker, yoliker
+from time import sleep
 
 d = print
 def print(*a,**b):
