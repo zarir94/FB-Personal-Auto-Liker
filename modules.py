@@ -15,6 +15,7 @@ class CloudScraper(CS):
         super().__init__(*a, **b)
 
     def request(self, method, url, *a, **b):
+        # print(url)
         self.history.append(url)
         b['allow_redirects'] = False
         r = super().request(method, url, *a, **b)
@@ -128,7 +129,7 @@ def djliker(cookie:str, post_link:str, react:str):
         raise r
 
     all_inputs = {k.get('name'): k.get('value') for k in doc.select('form input')}
-    all_inputs[list(all_inputs)[0]] = str(post_link).strip()
+    all_inputs[list(all_inputs)[1]] = str(post_link).strip()
     all_inputs[list(all_inputs)[2]] = react
     all_inputs['g-recaptcha-response'] = get_captcha_bypass('djliker')
 
@@ -142,6 +143,6 @@ def djliker(cookie:str, post_link:str, react:str):
     return count
 
 
-# yoliker(open('cookie').read(), 'https://www.facebook.com/photo/?fbid=138365072037652&set=a.108084451732381', 'LOVE')
-# djliker(open('cookie').read(), 'https://www.facebook.com/photo/?fbid=138365072037652&set=a.108084451732381', 'LOVE')
+# yoliker(open('cookie').read(), 'https://www.facebook.com/photo/?fbid=138365072037652&set=a.108084451732381', 'CARE')
+djliker(open('cookie').read(), 'https://www.facebook.com/photo/?fbid=138365072037652&set=a.108084451732381', 'CARE')
 
