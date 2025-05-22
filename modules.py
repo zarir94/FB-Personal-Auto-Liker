@@ -136,6 +136,7 @@ def djliker(cookie:str, post_link:str, react:str):
     r = s.post('https://dj.yogram.net/autolike.php?type=custom', data=all_inputs)
     doc = soup(r.text)
     alert_text = get_alert(s.history[-1])
+    if 'Tomorrow' in alert_text: raise Exception('Limit Reached For Today')
     count = get_only_int(alert_text)
     if count == 0:
         print(alert_text)
