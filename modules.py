@@ -143,6 +143,7 @@ def djliker(cookie:str, post_link:str, react:str):
     return count
 
 
-# yoliker(open('cookie').read(), 'https://www.facebook.com/photo/?fbid=138365072037652&set=a.108084451732381', 'CARE')
-djliker(open('cookie').read(), 'https://www.facebook.com/photo/?fbid=138365072037652&set=a.108084451732381', 'CARE')
+if __name__ == '__main__':
+    # yoliker(open('cookie').read(), 'https://www.facebook.com/photo/?fbid=138365072037652&set=a.108084451732381', 'CARE')
+    djliker(open('cookie').read(), 'https://www.facebook.com/photo/?fbid=138365072037652&set=a.108084451732381', 'CARE')
 
