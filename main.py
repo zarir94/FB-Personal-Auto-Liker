@@ -9,7 +9,7 @@ def print(*a,**b):
     d(*a, **b)
 
 if __name__ == '__main__':
-    post_id = sys.argv[1]
+    post_link = sys.argv[1]
     amount = int(sys.argv[2])
     react = sys.argv[3]
     r = get('https://pastebin.com/raw/zNsX8viB')
@@ -21,7 +21,7 @@ if __name__ == '__main__':
             print('=' * 60)
             print('[+] Trying %s in Yo Liker' % name)
             try:
-                ins_yo = yoliker(cookie, post_id, react)
+                ins_yo = yoliker(cookie, post_link, react)
                 total_sent += ins_yo
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
@@ -30,7 +30,7 @@ if __name__ == '__main__':
                 print('\n'.join(traceback.format_exc().splitlines()[-3:]))
             print('\n[+] Trying %s in DJ Liker' % name)
             try:
-                ins_dj = djliker(cookie, post_id, react)
+                ins_dj = djliker(cookie, post_link, react)
                 total_sent += ins_dj
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
